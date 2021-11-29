@@ -1,0 +1,27 @@
+<div>
+    <h1 i18n="Profile title">{{title | translate}}</h1>
+    <div>
+        <p>Username: {{ profileData.username }}</p>
+    </div>
+    <div>
+        <form #profileForm="ngForm"
+            (ngSubmit)="onSubmit(profileForm.value)"
+
+        >
+            <label for="firstname">First Name:</label>
+            <input [(ngModel)]="profileData.firstName" #firstname="ngModel" name="firstname" type="text" [disabled]="isDisabled()" (input)="onNamesUpdated(); resetErrors()"/>
+            <br>
+            <label for="lastname">Last Name:</label>
+            <input [(ngModel)]="profileData.lastName" #lastname="ngModel" name="lastname" type="text" [disabled]="isDisabled()" (input)="onNamesUpdated(); resetErrors()"/>
+            <br>
+            <label for="email">email:</label>
+            <input [(ngModel)]="profileData.email" #email="ngModel" name="email" type="email" [email]="true" style="width: 200px;" readonly/>
+            <p *ngIf="email.invalid" class="alert">email Invalid</p>
+            <br>
+            <input type="submit" value="Save" [disabled]="isDisabled() || email.invalid"/>
+        </form>
+    </div>
+    <p *ngIf="loading">Loading profile...</p>
+    <p *ngIf="saving">Saving profile...</p>
+    <p *ngIf="error" class="alert">Error! {{ error }}</p>
+</div>
