@@ -28,7 +28,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.profile.getProfileUser().then((data: IProfile) => {
-      console.log(data);
       this.profileData = data;
     }).catch(e => {
       this.error = e.error;
@@ -41,12 +40,9 @@ export class ProfileComponent implements OnInit {
     this.saving = true;
     this.resetErrors();
     this.profile.setData(formValue.firstname, formValue.lastname, formValue.email).then((data: any) => {
-      console.log('all data', data);
       this.profileData = data;
     }).catch(e => {
-      console.log(e);
       this.error = e.error;
-      this.onNamesUpdated();
     }).finally(()=> {
       this.saving = false;
     });

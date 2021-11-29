@@ -17,8 +17,7 @@ export class ProfileService {
     getProfileUser(): Promise<IProfile> {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                // if (Math.round(Math.random())) {
-                if(true){
+                if (Math.round(Math.random())) {
                     this.user = {
                         firstName: 'Michael',
                         lastName: 'Collins',
@@ -51,8 +50,6 @@ export class ProfileService {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 if (Math.round(Math.random())) {
-                // if(true){
-                    console.log('match', this.emailRegex.test(email));
                     if(this.emailRegex.test(email)){
                         this.user.email = email;
                         resolve();
